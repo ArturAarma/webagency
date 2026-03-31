@@ -1,4 +1,9 @@
-import { siteContent } from './content';
+import { siteContent } from '../content';
+
+type Service = { name: string; price: string; description: string; features: readonly string[] };
+type Founder = { name: string; role: string; bio: string };
+type Testimonial = { quote: string; name: string; role: string };
+type FaqItem = { q: string; a: string };
 
 export default function HomePage() {
   const { agency, hero, services, about, testimonials, faq, contact, founders } = siteContent;
@@ -51,15 +56,15 @@ export default function HomePage() {
         <section id="services" className="section">
           <div className="container">
             <p className="eyebrow">What we offer</p>
-            <h2 className="section-title">Services & Packages</h2>
+            <h2 className="section-title">Services &amp; Packages</h2>
             <div className="card-grid">
-              {services.map((s) => (
+              {(services as readonly Service[]).map((s: Service) => (
                 <article className="card" key={s.name}>
                   <h3>{s.name}</h3>
                   <p className="price">{s.price}</p>
                   <p className="muted">{s.description}</p>
                   <ul className="feature-list">
-                    {s.features.map((f) => <li key={f}>{f}</li>)}
+                    {s.features.map((f: string) => <li key={f}>{f}</li>)}
                   </ul>
                 </article>
               ))}
@@ -72,11 +77,11 @@ export default function HomePage() {
             <div>
               <p className="eyebrow">About us</p>
               <h2 className="section-title">{about.title}</h2>
-              {about.body.map((p) => <p className="muted" key={p}>{p}</p>)}
+              {(about.body as readonly string[]).map((p: string) => <p className="muted" key={p}>{p}</p>)}
             </div>
             <aside className="info-panel">
               <h3>Working hours</h3>
-              <ul>{contact.hours.map((h) => <li key={h}>{h}</li>)}</ul>
+              <ul>{(contact.hours as readonly string[]).map((h: string) => <li key={h}>{h}</li>)}</ul>
               <h3>Office</h3>
               <p className="muted">{contact.address}</p>
             </aside>
@@ -88,7 +93,7 @@ export default function HomePage() {
             <p className="eyebrow">Social proof</p>
             <h2 className="section-title">What clients say</h2>
             <div className="card-grid">
-              {testimonials.map((t) => (
+              {(testimonials as readonly Testimonial[]).map((t: Testimonial) => (
                 <article className="card quote-card" key={t.name}>
                   <p className="quote">&ldquo;{t.quote}&rdquo;</p>
                   <p className="quote-meta">{t.name} &middot; {t.role}</p>
@@ -103,7 +108,7 @@ export default function HomePage() {
             <p className="eyebrow">FAQ</p>
             <h2 className="section-title">Frequently asked questions</h2>
             <div className="faq-list">
-              {faq.map((item) => (
+              {(faq as readonly FaqItem[]).map((item: FaqItem) => (
                 <details className="faq-item" key={item.q}>
                   <summary>{item.q}</summary>
                   <p>{item.a}</p>
@@ -139,7 +144,7 @@ export default function HomePage() {
             <p className="eyebrow">The team</p>
             <h2 className="section-title">Founders</h2>
             <div className="card-grid">
-              {founders.map((f) => (
+              {(founders as readonly Founder[]).map((f: Founder) => (
                 <article className="card founder-card" key={f.name}>
                   <h3>{f.name}</h3>
                   <p className="muted">{f.role}</p>

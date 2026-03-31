@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import { siteContent } from './content';
+import './app/globals.css';
+import { siteContent } from './app/content';
 
 export const metadata: Metadata = {
   title: siteContent.seo.title,
