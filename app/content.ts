@@ -92,3 +92,25 @@ export const contact = {
   address: agency.address,
   formspreEndpoint: agency.formspreEndpoint,
 };
+
+export const seo = {
+  title: `${agency.name} | ${agency.tagline}`,
+  description: agency.description,
+};
+
+export const siteContent = {
+  agency,
+  hero: {
+    eyebrow: agency.tagline,
+    headline: "Premium websites that work",
+    subcopy: agency.description,
+    primaryCta: { label: "Get Started", href: "#services" },
+    secondaryCta: { label: "View Our Work", href: "#testimonials" },
+  },
+  services,
+  testimonials,
+  faq: faqs,
+  contact,
+  founders,
+  seo,
+};
